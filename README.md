@@ -53,3 +53,14 @@ Welcome to the Project : Project Management System
    **any small-to-medium software company** that wants a lightweight,
    in-house alternative to tools like Jira or Asana, tailored to their own
    reporting hierarchy.
+
+STEP-BY-STEP IMPLEMENTATION OF THE PROJECT
+
+1	Auth + system-wide roles (HR / Manager / Team Leader / Employee)	
+2	Projects + project-level roles (Manager / Team Leader / Employee per project)	
+3	Tasks — CRUD, status workflow, dependencies, progress %	
+4	Removal & reassignment — Team Leader replacement, employee reassignment with history	
+5	HR global access — HR bypasses project membership checks, sees everything	
+6	Email notifications for key events	
+7	Dashboards — Manager's project % view, Team Leader's employee progress view	
+8	Polish, testing
