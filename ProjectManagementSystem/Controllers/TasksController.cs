@@ -24,7 +24,7 @@ namespace ProjectManagementSystem.Controllers
 
         private async Task<bool> IsProjectMember(int projectId, string userId) =>
             await _db.Projects.AnyAsync(p => p.Id == projectId &&
-                (p.OwnerId == userId || p.Members.Any(m => m.UserId == userId)));
+                (p.OwnerId == userId || p.Members.Any(m => m.UserId == userId && !m.IsRemoved)));
 
         [HttpGet]
         public async Task<ActionResult<IEnumerable<TaskResponseDto>>> GetTasks(

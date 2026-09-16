@@ -1,0 +1,72 @@
+2026-09-16 06:11:00 [WRN] Microsoft.EntityFrameworkCore.Model.Validation: Entity 'ProjectTask' has a global query filter defined and is the required end of a relationship with the entity 'TaskActivityLog'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-09-16 06:11:00 [WRN] Microsoft.EntityFrameworkCore.Model.Validation: Entity 'ProjectTask' has a global query filter defined and is the required end of a relationship with the entity 'TaskComment'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-09-16 06:11:10 [INF] Microsoft.Hosting.Lifetime: Now listening on: https://localhost:7129
+2026-09-16 06:11:10 [INF] Microsoft.Hosting.Lifetime: Now listening on: http://localhost:5188
+2026-09-16 06:11:10 [INF] Microsoft.Hosting.Lifetime: Application started. Press Ctrl+C to shut down.
+2026-09-16 06:11:10 [INF] Microsoft.Hosting.Lifetime: Hosting environment: Development
+2026-09-16 06:11:10 [INF] Microsoft.Hosting.Lifetime: Content root path: C:\Users\rajes\source\repos\ProjectManagementSystem\ProjectManagementSystem
+2026-09-16 06:12:10 [ERR] Serilog.AspNetCore.RequestLoggingMiddleware: HTTP GET /api/Projects responded 500 in 36647.3410 ms
+System.InvalidOperationException: User id claim missing.
+   at ProjectManagementSystem.Controllers.ProjectsController.get_CurrentUserId() in C:\Users\rajes\source\repos\ProjectManagementSystem\ProjectManagementSystem\Controllers\ProjectsController.cs:line 22
+   at ProjectManagementSystem.Controllers.ProjectsController.GetProjects(Int32 page, Int32 pageSize) in C:\Users\rajes\source\repos\ProjectManagementSystem\ProjectManagementSystem\Controllers\ProjectsController.cs:line 32
+   at lambda_method61(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2026-09-16 06:12:10 [ERR] Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware: An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: User id claim missing.
+   at ProjectManagementSystem.Controllers.ProjectsController.get_CurrentUserId() in C:\Users\rajes\source\repos\ProjectManagementSystem\ProjectManagementSystem\Controllers\ProjectsController.cs:line 22
+   at ProjectManagementSystem.Controllers.ProjectsController.GetProjects(Int32 page, Int32 pageSize) in C:\Users\rajes\source\repos\ProjectManagementSystem\ProjectManagementSystem\Controllers\ProjectsController.cs:line 32
+   at lambda_method61(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2026-09-16 06:13:07 [WRN] Microsoft.EntityFrameworkCore.Model.Validation: Entity 'ProjectTask' has a global query filter defined and is the required end of a relationship with the entity 'TaskActivityLog'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-09-16 06:13:07 [WRN] Microsoft.EntityFrameworkCore.Model.Validation: Entity 'ProjectTask' has a global query filter defined and is the required end of a relationship with the entity 'TaskComment'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-09-16 06:13:15 [INF] Microsoft.Hosting.Lifetime: Now listening on: https://localhost:7129
+2026-09-16 06:13:15 [INF] Microsoft.Hosting.Lifetime: Now listening on: http://localhost:5188
+2026-09-16 06:13:15 [INF] Microsoft.Hosting.Lifetime: Application started. Press Ctrl+C to shut down.
+2026-09-16 06:13:15 [INF] Microsoft.Hosting.Lifetime: Hosting environment: Development
+2026-09-16 06:13:15 [INF] Microsoft.Hosting.Lifetime: Content root path: C:\Users\rajes\source\repos\ProjectManagementSystem\ProjectManagementSystem
+2026-09-16 06:13:38 [INF] Serilog.AspNetCore.RequestLoggingMiddleware: HTTP GET /api/Auth/me responded 401 in 93.9427 ms
+2026-09-16 06:14:46 [INF] Serilog.AspNetCore.RequestLoggingMiddleware: HTTP POST /api/Auth/login responded 400 in 158.4979 ms
+2026-09-16 06:15:26 [WRN] ProjectManagementSystem.Controllers.AuthController: Login failed for Rajeshistala1@gmail.com: incorrect password
+2026-09-16 06:15:26 [INF] Serilog.AspNetCore.RequestLoggingMiddleware: HTTP POST /api/Auth/login responded 401 in 351.9615 ms
+2026-09-16 06:16:11 [INF] ProjectManagementSystem.Controllers.AuthController: User Rajeshistala1@gmail.com logged in as HR
+2026-09-16 06:16:11 [INF] Serilog.AspNetCore.RequestLoggingMiddleware: HTTP POST /api/Auth/login responded 200 in 294.2183 ms
+2026-09-16 06:16:47 [INF] Serilog.AspNetCore.RequestLoggingMiddleware: HTTP GET /api/Auth/me responded 200 in 174.4798 ms
+2026-09-16 06:16:58 [INF] Serilog.AspNetCore.RequestLoggingMiddleware: HTTP GET /api/Auth/me responded 200 in 18.2675 ms
+2026-09-16 23:21:20 [WRN] Microsoft.EntityFrameworkCore.Model.Validation: Entity 'ProjectTask' has a global query filter defined and is the required end of a relationship with the entity 'TaskActivityLog'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-09-16 23:21:20 [WRN] Microsoft.EntityFrameworkCore.Model.Validation: Entity 'ProjectTask' has a global query filter defined and is the required end of a relationship with the entity 'TaskComment'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-09-16 23:21:33 [WRN] Microsoft.EntityFrameworkCore.Model.Validation: Entity 'ProjectTask' has a global query filter defined and is the required end of a relationship with the entity 'TaskActivityLog'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-09-16 23:21:33 [WRN] Microsoft.EntityFrameworkCore.Model.Validation: Entity 'ProjectTask' has a global query filter defined and is the required end of a relationship with the entity 'TaskComment'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-09-16 23:21:57 [WRN] Microsoft.EntityFrameworkCore.Model.Validation: Entity 'ProjectTask' has a global query filter defined and is the required end of a relationship with the entity 'TaskActivityLog'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-09-16 23:21:57 [WRN] Microsoft.EntityFrameworkCore.Model.Validation: Entity 'ProjectTask' has a global query filter defined and is the required end of a relationship with the entity 'TaskComment'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-09-16 23:21:58 [INF] Microsoft.Hosting.Lifetime: Now listening on: https://localhost:7129
+2026-09-16 23:21:58 [INF] Microsoft.Hosting.Lifetime: Now listening on: http://localhost:5188
+2026-09-16 23:21:58 [INF] Microsoft.Hosting.Lifetime: Application started. Press Ctrl+C to shut down.
+2026-09-16 23:21:58 [INF] Microsoft.Hosting.Lifetime: Hosting environment: Development
+2026-09-16 23:21:58 [INF] Microsoft.Hosting.Lifetime: Content root path: C:\Users\rajes\source\repos\ProjectManagementSystem\ProjectManagementSystem

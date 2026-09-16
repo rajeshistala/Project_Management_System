@@ -29,5 +29,8 @@
 
         public ProjectRole Role { get; set; } = ProjectRole.Employee;
         public DateTime JoinedAt { get; set; } = DateTime.UtcNow;
+
+        public bool IsRemoved { get; set; } = false;
+        public DateTime? RemovedAt { get; set; }
     }
 }

@@ -6,6 +6,7 @@ using ProjectManagementSystem.DTOs;
 using ProjectManagementSystem.Models;
 using Serilog;
 using System.Text;
+using ProjectManagementSystem.Endpoints;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -115,5 +116,6 @@ app.UseCors("DevFrontend");
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
+app.MapMembershipEndpoints();
 
 app.Run();

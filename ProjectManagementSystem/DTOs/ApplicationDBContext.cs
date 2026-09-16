@@ -16,7 +16,7 @@ namespace ProjectManagementSystem.DTOs
         public DbSet<ProjectTask> ProjectTasks => Set<ProjectTask>();
         public DbSet<TaskComment> TaskComments => Set<TaskComment>();
         public DbSet<TaskActivityLog> TaskActivityLogs => Set<TaskActivityLog>();
-
+        public DbSet<ProjectRoleChangeLog> ProjectRoleChangeLogs => Set<ProjectRoleChangeLog>();
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
@@ -80,6 +80,26 @@ namespace ProjectManagementSystem.DTOs
                 .WithMany(t => t.ActivityLogs)
                 .HasForeignKey(l => l.TaskId)
                 .OnDelete(DeleteBehavior.Cascade);
+
+            builder.Entity<ProjectRoleChangeLog>()
+                .HasOne(l => l.Project).WithMany()
+                .HasForeignKey(l => l.ProjectId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            builder.Entity<ProjectRoleChangeLog>()
+                .HasOne(l => l.AffectedUser).WithMany()
+                .HasForeignKey(l => l.AffectedUserId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder.Entity<ProjectRoleChangeLog>()
+                .HasOne(l => l.ChangedByUser).WithMany()
+                .HasForeignKey(l => l.ChangedByUserId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder.Entity<ProjectRoleChangeLog>()
+                .HasOne(l => l.ReplacementUser).WithMany()
+                .HasForeignKey(l => l.ReplacementUserId)
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }
