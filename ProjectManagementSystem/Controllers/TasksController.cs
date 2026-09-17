@@ -22,8 +22,11 @@ namespace ProjectManagementSystem.Controllers
             ?? User.FindFirstValue("sub")
             ?? throw new InvalidOperationException("User id claim missing.");
 
+        // HR ignores project membership entirely — company-wide visibility by role.
+        private bool IsHr => User.IsInRole(SystemRoles.HR);
+
         private async Task<bool> IsProjectMember(int projectId, string userId) =>
-            await _db.Projects.AnyAsync(p => p.Id == projectId &&
+            IsHr || await _db.Projects.AnyAsync(p => p.Id == projectId &&
                 (p.OwnerId == userId || p.Members.Any(m => m.UserId == userId && !m.IsRemoved)));
 
         [HttpGet]

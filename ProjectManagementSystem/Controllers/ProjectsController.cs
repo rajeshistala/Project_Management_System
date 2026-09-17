@@ -22,6 +22,9 @@ namespace ProjectManagementSystem.Controllers
         private string CurrentUserId => User.FindFirstValue(ClaimTypes.NameIdentifier)
             ?? User.FindFirstValue("sub")
             ?? throw new InvalidOperationException("User id claim missing.");
+        // HR ignores project membership entirely — company-wide visibility by role,
+        // not by being added to each project individually.
+        private bool IsHr => User.IsInRole(SystemRoles.HR);
 
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ProjectResponseDto>>> GetProjects(
@@ -30,9 +33,10 @@ namespace ProjectManagementSystem.Controllers
             page = Math.Max(page, 1);
             pageSize = Math.Clamp(pageSize, 1, 100);
             var userId = CurrentUserId;
+            var isHr = IsHr;
 
             var projects = await _db.Projects
-                .Where(p => p.OwnerId == userId || p.Members.Any(m => m.UserId == userId))
+                .Where(p => isHr || p.OwnerId == userId || p.Members.Any(m => m.UserId == userId))
                 .OrderByDescending(p => p.CreatedAt)
                 .Skip((page - 1) * pageSize)
                 .Take(pageSize)
@@ -58,8 +62,9 @@ namespace ProjectManagementSystem.Controllers
         public async Task<ActionResult<ProjectResponseDto>> GetProject(int id)
         {
             var userId = CurrentUserId;
+            var isHr = IsHr;
             var project = await _db.Projects
-                .Where(p => p.Id == id && (p.OwnerId == userId || p.Members.Any(m => m.UserId == userId)))
+                .Where(p => p.Id == id && (isHr || p.OwnerId == userId || p.Members.Any(m => m.UserId == userId)))
                 .Select(p => new ProjectResponseDto
                 {
                     Id = p.Id,
@@ -130,7 +135,7 @@ namespace ProjectManagementSystem.Controllers
 
             var isOwner = project.OwnerId == userId;
             var isManager = project.Members.Any(m => m.UserId == userId && m.Role == ProjectRole.Manager);
-            if (!isOwner && !isManager) return Forbid();
+            if (!isOwner && !isManager && !IsHr) return Forbid();
 
             project.Name = dto.Name;
             project.Description = dto.Description;
@@ -148,6 +153,9 @@ namespace ProjectManagementSystem.Controllers
             var project = await _db.Projects.FirstOrDefaultAsync(p => p.Id == id);
             if (project == null) return NotFound();
 
+            // Deletion stays owner-only even for HR — HR gets full VISIBILITY
+            // and oversight, but permanently destroying a project is a
+            // narrower power reserved for whoever actually owns it.
             if (project.OwnerId != userId) return Forbid();
 
             _db.Projects.Remove(project);
@@ -164,7 +172,7 @@ namespace ProjectManagementSystem.Controllers
 
             var isOwner = project.OwnerId == userId;
             var isManager = project.Members.Any(m => m.UserId == userId && m.Role == ProjectRole.Manager);
-            if (!isOwner && !isManager) return Forbid();
+            if (!isOwner && !isManager && !IsHr) return Forbid();
 
             if (project.Members.Any(m => m.UserId == dto.UserId))
                 return Conflict(new { message = "User is already a member of this project." });
